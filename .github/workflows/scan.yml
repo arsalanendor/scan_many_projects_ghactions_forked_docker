@@ -12,7 +12,7 @@ jobs:
       id-token: write      # allows authentication to Endor Labs using Actions OIDC JWT Token
       contents: read       # allows this job to clone org repos
     env:
-      GH_TOKEN: ${{ secrets.YOUR_GITHUB_PERSONAL_TOKEN }}  # Replace with your actual secret
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Replace with your actual secret
       ENDOR_API_CREDENTIALS_KEY: ${{ secrets.ENDOR_API_CREDENTIALS_KEY }}
       ENDOR_API_CREDENTIALS_SECRET: ${{ secrets.ENDOR_API_CREDENTIALS_SECRET }}
       ENDOR_NAMESPACE: 'arsalan-learn'
