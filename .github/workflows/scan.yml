@@ -48,6 +48,6 @@ jobs:
             cd project
             #add any build steps that are needed here
             cd ..
-            ./endorctl scan --path=project  || echo "Endorctl scan failed for $CLONE_URL, continuing..."
+            ./endorctl scan --path=project --install-build-tools  || echo "Endorctl scan failed for $CLONE_URL, continuing..."
             rm -rf project    
           done
