@@ -1,1 +1,7 @@
-https://github.com/dbt-labs/dbt-redshift.git
+https://github.com/dbt-labs/dbt-postgres.git
+https://github.com/dbt-labs/dbt-spark.git
+https://github.com/dbt-labs/dbt-snowflake.git
+https://github.com/dbt-labs/metricflow.git
+https://github.com/dbt-labs/dbt-common.git
+https://github.com/dbt-labs/terraform-provider-dbtcloud.git
+https://github.com/dbt-labs/dbt-core.git
