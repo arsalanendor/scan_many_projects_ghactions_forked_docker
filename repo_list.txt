@@ -1,1 +1,1 @@
-https://github.com/saltstack/salt.git
+https://github.com/dbt-labs/dbt-redshift.git
