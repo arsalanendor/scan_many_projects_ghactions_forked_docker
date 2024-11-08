@@ -46,6 +46,12 @@ jobs:
       - name: Verify Docker installation
         run: sudo docker --version
 
+      - name: Build the image
+        shell: bash
+        run: |
+          docker build -t docker-image .
+          docker run -it docker-image 
+
       # - name: Download Endorctl
       #   run: |
       #       curl https://api.endorlabs.com/download/latest/endorctl_linux_amd64 -o endorctl;
