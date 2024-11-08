@@ -15,6 +15,19 @@ sbt compile
 sbt projects
 
 
+### Download the latest CLI for Linux amd64
+curl https://api.endorlabs.com/download/latest/endorctl_linux_amd64 -o endorctl
+
+### Verify the checksum of the binary
+echo "$(curl -s https://api.endorlabs.com/sha/latest/endorctl_linux_amd64)  endorctl" | sha256sum -c
+
+### Modify the permissions of the binary to ensure it is executable
+chmod +x ./endorctl
+
+### Create an alias endorctl of the binary to ensure it is available in other directory
+alias endorctl="$PWD/endorctl"
+
+
 #Unshallow Clone
 #git fetch --unshallow
 #git checkout $BRANCH_NAME
