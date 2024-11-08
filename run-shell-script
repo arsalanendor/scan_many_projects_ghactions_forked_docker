@@ -12,10 +12,10 @@
 
 
 ### Download the latest CLI for Linux amd64
-curl https://api.endorlabs.com/download/latest/endorctl_linux_amd64 -o /usr/local/bin/endorctl
+#curl https://api.endorlabs.com/download/latest/endorctl_linux_amd64 -o /usr/local/bin/endorctl
 
 ### Modify the permissions of the binary to ensure it is executable
-chmod +x /usr/local/bin/endorctl
+#chmod +x /usr/local/bin/endorctl
 
 ### Create an alias endorctl of the binary to ensure it is available in other directory
 #alias endorctl="$PWD/endorctl"
