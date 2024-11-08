@@ -41,7 +41,7 @@ RUN java -version && \
 
 # Download and install endorctl
 RUN curl --silent --show-error --location -o /usr/local/bin/endorctl \ 
-    "https://api.endorlabs.com/download/latest/endorctl_linux_amd64"  && \
+    "https://api.endorlabs.com/download/endorlabs/${ENDORCTL_VERSION}/binaries/endorctl_${ENDORCTL_VERSION}_linux_amd64"  && \
     chmod +x /usr/local/bin/endorctl
 
 # Copy and set entrypoint for shell script
