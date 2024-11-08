@@ -21,33 +21,57 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GH_TOKEN }}
+      
+      - name: Update package database
+        run: sudo apt-get update
+  
+      - name: Install required packages
+        run: |
+          sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 
-      - name: Download Endorctl
+      - name: Add Docker’s official GPG key
         run: |
-            curl https://api.endorlabs.com/download/latest/endorctl_linux_amd64 -o endorctl;
-            echo "$(curl -s https://api.endorlabs.com/sha/latest/endorctl_linux_amd64)  endorctl" | sha256sum -c;
-            if [ $? -ne 0 ]; then 
-             echo "Integrity check failed"; 
-             exit 1;
-            fi
-            chmod +x ./endorctl 
-      - name: Read repo list and scan one by one
-        shell: bash
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+      - name: Add Docker repository
         run: |
-          cat repo_list.txt | while read CLONE_URL; do
-            echo "Processing repository: $CLONE_URL"
-            if (git clone "${CLONE_URL}" "project"); then
-              >&2 echo "Cloned '${CLONE_URL}' successfully using bare git"
-            else
-              >&2 echo "trying gh instead..."
-              if ! (gh repo clone "${CLONE_URL}" "project"); then
-                echo "::error::unable to clone '${CLONE_URL}' with any supported method"
-                continue # Skip to the next repository in case of a failure
-              fi
-            fi
-            cd project
-            #add any build steps that are needed here
-            cd ..
-            ./endorctl scan --path=project --install-build-tools  || echo "Endorctl scan failed for $CLONE_URL, continuing..."
-            rm -rf project    
-          done
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+      - name: Update package database with Docker packages
+        run: sudo apt-get update
+
+      - name: Install Docker
+        run: sudo apt-get install -y docker-ce
+
+      - name: Verify Docker installation
+        run: sudo docker --version
+
+      # - name: Download Endorctl
+      #   run: |
+      #       curl https://api.endorlabs.com/download/latest/endorctl_linux_amd64 -o endorctl;
+      #       echo "$(curl -s https://api.endorlabs.com/sha/latest/endorctl_linux_amd64)  endorctl" | sha256sum -c;
+      #       if [ $? -ne 0 ]; then 
+      #        echo "Integrity check failed"; 
+      #        exit 1;
+      #       fi
+      #       chmod +x ./endorctl 
+      # - name: Read repo list and scan one by one
+      #   shell: bash
+      #   run: |
+      #     cat repo_list.txt | while read CLONE_URL; do
+      #       echo "Processing repository: $CLONE_URL"
+      #       if (git clone "${CLONE_URL}" "project"); then
+      #         >&2 echo "Cloned '${CLONE_URL}' successfully using bare git"
+      #       else
+      #         >&2 echo "trying gh instead..."
+      #         if ! (gh repo clone "${CLONE_URL}" "project"); then
+      #           echo "::error::unable to clone '${CLONE_URL}' with any supported method"
+      #           continue # Skip to the next repository in case of a failure
+      #         fi
+      #       fi
+      #       cd project
+      #       #add any build steps that are needed here
+      #       cd ..
+      #       ./endorctl scan --path=project --install-build-tools  || echo "Endorctl scan failed for $CLONE_URL, continuing..."
+      #       rm -rf project    
+      #     done

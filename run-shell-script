@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# git init
+# git config --global user.email "anon-builder@arsalanendor"
+# git config --global user.name "anon-builder"
+# git add -A .
+# git commit --quiet -m 'Initial commit to speed fetching'
+# git remote remove origin
+
+#git remote add origin "https://github.com/ucb-bar/dsptools.git"
+
+git clone "https://github.com/ucb-bar/dsptools.git" app
+cd app/
+sbt compile
+sbt projects
+
+
+#Unshallow Clone
+#git fetch --unshallow
+#git checkout $BRANCH_NAME
+#git pull origin $BRANCH_NAME
+ls -al
+echo $PATH
+export ENDOR_TOKEN="eyJhbGciOiJFUzI1NiIsImtpZCI6IjlCOkFBOkJCOjhDOkE5OkI3OjUwOjEzOkY5OjkyOkMyOjQ0OjY1OkFFOkQ0OjBGOjMzOjM0OkUyOjE5OjdFOjgzOkY4OkVGOjNEOjJCOkIyOjFCOjRBOjM1OjNEOjBFIiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwczovL2FwaS5lbmRvcmxhYnMuY29tL3YxIiwic3ViIjoiYWFobWVkQGVuZG9yLmFpQGdvb2dsZSIsImF1ZCI6WyJBUElTZXJ2ZXIiXSwiZXhwIjoxNzMxMTA4NjczLCJpYXQiOjE3MzEwOTQyNzMsImp0aSI6IjZkMmI4YjMxLTNjNzctNDJlYy1hMzJlLWVhMjg4NTQ0ZWQyMSIsImlkZW50aXR5IjpbImVuZHIrNklKdFZEUkpuYkowcW5aMiIsImlzc3VpbmdfdXNlcj1hYWhtZWRAZW5kb3IuYWlAZ29vZ2xlIl0sInNvdXJjZV90eXBlIjoicHJpdmF0ZSIsInNvdXJjZSI6ImFwaS1rZXkiLCJuYW1lc3BhY2UiOiIifQ.Ab-H4EmtqW9_5o2TZc0iKtwYwimCMezWsDAyaAs3VKOJc3ztcPRpoTtZeFoJ0kQdfxZB8MFpHiRHiyvjQGY-vA"
+
+if [ "$BRANCH_NAME" == "master" ] || [ "$BRANCH_NAME" == "main" ]; then
+    echo "Running Endorctl Scan on " $BRANCH_NAME
+    /usr/local/bin/endorctl scan -n arsalan-learn --secrets --git-logs --dependencies --verbose=true --log-level=debug -o summary 
+    
+else
+    echo "Running Endorctl PR Scan on " $BRANCH_NAME
+    /usr/local/bin/endorctl scan -n arsalan-learn --pr --secrets --git-logs --dependencies --verbose=true --log-level=debug -o summary
+fi
