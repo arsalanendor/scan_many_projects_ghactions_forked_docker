@@ -50,7 +50,7 @@ jobs:
         shell: bash
         run: |
           docker build -t docker-image .
-          docker run -it docker-image 
+          docker run docker-image 
 
       # - name: Download Endorctl
       #   run: |
