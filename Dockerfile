@@ -40,7 +40,7 @@ RUN java -version && \
     scala -version
 
 # Download and install endorctl
-RUN curl https://api.endorlabs.com/download/latest/endorctl_linux_amd64 -o /usr/local/bin/endorctl && \
+RUN curl -o /usr/local/bin/endorctl https://api.endorlabs.com/download/latest/endorctl_linux_amd64  && \
     chmod +x /usr/local/bin/endorctl
 
 # Copy and set entrypoint for shell script
