@@ -3,7 +3,7 @@ FROM ubuntu:latest
 
 # Set environment variables for Scala and SBT versions
 ARG SCALA_VERSION=2.13.8
-ARG ENDORCTL_VERSION=v1.6.649
+ARG ENDORCTL_VERSION=v1.6.650
 
 # Set environment variables
 ENV SCALA_HOME=/usr/share/scala
