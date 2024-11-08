@@ -39,10 +39,10 @@ RUN java -version && \
     sbt --version && \
     scala -version
 
-# Download and install endorctl
-RUN curl --silent --show-error --location -o /usr/local/bin/endorctl \
-    "https://api.endorlabs.com/download/endorlabs/${ENDORCTL_VERSION}/binaries/endorctl_${ENDORCTL_VERSION}_linux_amd64" && \
-    chmod +x /usr/local/bin/endorctl
+# # Download and install endorctl
+# RUN curl --silent --show-error --location -o /usr/local/bin/endorctl \
+#     "https://api.endorlabs.com/download/endorlabs/${ENDORCTL_VERSION}/binaries/endorctl_${ENDORCTL_VERSION}_linux_amd64" && \
+#     chmod +x /usr/local/bin/endorctl
 
 # Copy and set entrypoint for shell script
 COPY run-shell-script /usr/local/bin/run-shell-script
