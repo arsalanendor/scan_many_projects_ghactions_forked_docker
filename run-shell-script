@@ -36,7 +36,7 @@ ls -al
 echo $PATH
 export ENDOR_TOKEN="eyJhbGciOiJFUzI1NiIsImtpZCI6IjlCOkFBOkJCOjhDOkE5OkI3OjUwOjEzOkY5OjkyOkMyOjQ0OjY1OkFFOkQ0OjBGOjMzOjM0OkUyOjE5OjdFOjgzOkY4OkVGOjNEOjJCOkIyOjFCOjRBOjM1OjNEOjBFIiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwczovL2FwaS5lbmRvcmxhYnMuY29tL3YxIiwic3ViIjoiYWFobWVkQGVuZG9yLmFpQGdvb2dsZSIsImF1ZCI6WyJBUElTZXJ2ZXIiXSwiZXhwIjoxNzMxMTA4NjczLCJpYXQiOjE3MzEwOTQyNzMsImp0aSI6IjZkMmI4YjMxLTNjNzctNDJlYy1hMzJlLWVhMjg4NTQ0ZWQyMSIsImlkZW50aXR5IjpbImVuZHIrNklKdFZEUkpuYkowcW5aMiIsImlzc3VpbmdfdXNlcj1hYWhtZWRAZW5kb3IuYWlAZ29vZ2xlIl0sInNvdXJjZV90eXBlIjoicHJpdmF0ZSIsInNvdXJjZSI6ImFwaS1rZXkiLCJuYW1lc3BhY2UiOiIifQ.Ab-H4EmtqW9_5o2TZc0iKtwYwimCMezWsDAyaAs3VKOJc3ztcPRpoTtZeFoJ0kQdfxZB8MFpHiRHiyvjQGY-vA"
 
-/usr/local/bin/endorctl scan -n arsalan-learn --secrets --git-logs --dependencies --verbose=true --log-level=debug -o summary 
+endorctl scan -n arsalan-learn --secrets --git-logs --dependencies --verbose=true --log-level=debug -o summary 
 
 # if [ "$BRANCH_NAME" == "master" ] || [ "$BRANCH_NAME" == "main" ]; then
 #     echo "Running Endorctl Scan on " $BRANCH_NAME
